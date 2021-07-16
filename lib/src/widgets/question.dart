@@ -1,5 +1,5 @@
 import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constants.dart';
+import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,8 +14,8 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultPadding),
-      padding: EdgeInsets.all(defaultPadding),
+      margin: EdgeInsets.symmetric(horizontal: AppColor.defaultPadding),
+      padding: EdgeInsets.all(AppColor.defaultPadding),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
@@ -27,9 +27,9 @@ class QuestionCard extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline5
-                ?.copyWith(color: kBlackColor),
+                ?.copyWith(color:QuizSreen.titleTextColor),
           ),
-          SizedBox(height: defaultPadding),
+          SizedBox(height:AppColor.defaultPadding),
           BlocProvider(
             create: (context) => QuizBloc(),
             child: Column(

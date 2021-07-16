@@ -1,5 +1,5 @@
 import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constants.dart';
+import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +20,7 @@ class Score extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .headline3
-                      ?.copyWith(color: kSecondaryColor)),
+                      ?.copyWith(color:ScoreSreen.shadowColor)),
               Spacer(),
               BlocBuilder<QuizBloc, QuizState>(
                 builder: (context, state) {
@@ -29,7 +29,7 @@ class Score extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline4
-                        ?.copyWith(color: kSecondaryColor),
+                        ?.copyWith(color:ScoreSreen.shadowColor),
                   );
                 },
               ),

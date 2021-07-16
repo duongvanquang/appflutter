@@ -14,8 +14,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   bool _isAnswer = false;
   int _correctAnswer = 0;
   int _questionNumber = 1;
-   int _idAnswerSelected = 0;
-   int _idRightAnswer = 0;
+  int _idAnswerSelected = 0;
+  int _idRightAnswer = 0;
   List<Question> _question = sample_data
       .map(
         (question) => Question(
@@ -41,7 +41,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       yield QuestionLoadProgress();
       try {
         // int questionIndex = 0;
-        yield QuestionSuccess(data:_question);
+        yield QuestionSuccess(data: _question);
       } catch (exception) {
         yield QuestionLoadProgress();
       }
@@ -54,17 +54,16 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         Future.delayed(Duration(seconds: 1), () {
           nextQuestion(event.context);
         });
+        yield QuizChooseRightAnswer();
       } else {
         Future.delayed(Duration(seconds: 1), () {
           nextQuestion(event.context);
         });
+        yield QuestionSuccess(data: _question);
       }
-      yield QuestionLoadProgress();
     } else if (event is QuizChangeQuestionPage) {
       _questionNumber++;
       yield QuizQuestionPageChanged();
-    } else {
-    
     }
   }
 
@@ -74,7 +73,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       pageController.nextPage(
           duration: Duration(milliseconds: 500), curve: Curves.ease);
     } else {
-      Navigator.of(context).pushNamed('/result');
+      Navigator.of(context).pushNamed('/Score');
     }
   }
 

@@ -1,5 +1,5 @@
 import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constants.dart';
+import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:appdemo/src/screens/quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
               SafeArea(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      const EdgeInsets.symmetric(horizontal: AppColor.defaultPadding),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
                                 .textTheme
                                 .headline4
                                 ?.copyWith(
-                                    color: Colors.white,
+                                    color:WelcomeSreen.backgroundColor,
                                     fontWeight: FontWeight.bold)),
                         Text("Enter your informations below"),
                         Spacer(),
@@ -57,16 +57,16 @@ class WelcomeScreen extends StatelessWidget {
                             child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,
-                              padding: EdgeInsets.all(defaultPadding * 0.75),
+                              padding: EdgeInsets.all(AppColor.defaultPadding * 0.75),
                               decoration: BoxDecoration(
-                                  gradient: kPrimaryGradient,
+                                  gradient:WelcomeSreen.backgroundGradien,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(12))),
                               child: Text("Lets Start Quiz",
                                   style: Theme.of(context)
                                       .textTheme
                                       .button
-                                      ?.copyWith(color: Colors.black)),
+                                      ?.copyWith(color:WelcomeSreen.titleTextColor)),
                             )),
                         Spacer(flex: 2)
                       ]),
@@ -74,8 +74,6 @@ class WelcomeScreen extends StatelessWidget {
               )
             ],
           );
-        } else if (state is QuestionLoadProgress) {
-          return Center(child: CircularProgressIndicator());
         } else if (state is QuestionSuccess) {
           return QuizScreen(state.data);
         } else {
@@ -84,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline1
-                ?.copyWith(color: Colors.white),
+                ?.copyWith(color: WelcomeSreen.backgroundColor),
           );
         }
       },

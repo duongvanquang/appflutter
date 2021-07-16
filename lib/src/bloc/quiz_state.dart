@@ -22,7 +22,7 @@ class QuestionSuccess extends QuizState {
 
 class NextQuestion extends QuizState {
   final nextquestion;
-  NextQuestion(this.nextquestion);
+  NextQuestion({this.nextquestion});
   @override
   List<Object> get props => [nextquestion];
 }
@@ -30,3 +30,5 @@ class NextQuestion extends QuizState {
 class QuizQuestionPageChanged extends QuizState {}
 
 class ChooseOption extends QuizState {}
+
+class QuizChooseRightAnswer extends QuizState{}
