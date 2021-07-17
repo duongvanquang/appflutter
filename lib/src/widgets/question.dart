@@ -2,6 +2,7 @@ import 'package:appdemo/src/bloc/quiz_bloc.dart';
 import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/quiz_event.dart';
 
 import 'option.dart';
 
@@ -27,26 +28,27 @@ class QuestionCard extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline5
-                ?.copyWith(color:QuizSreen.titleTextColor),
+                ?.copyWith(color: QuizSreen.titleTextColor),
           ),
-          SizedBox(height:AppColor.defaultPadding),
-          BlocProvider(
-            create: (context) => QuizBloc(),
-            child: Column(
-              children: [
-                ...List.generate(
-                    data.options.length,
-                    (index) => Option(
-                        index: index,
-                        text: data.options[index],
-                        onPress: () => {
-                              context
-                                  .read<QuizBloc>()
-                                  .add(CheckAns(context, data, index))
-                            })),
-              ],
-            ),
-          )
+          SizedBox(height: AppColor.defaultPadding),
+          BlocBuilder<QuizBloc, QuizState>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  ...List.generate(
+                      data.options.length,
+                      (index) => Option(
+                          index: index,
+                          text: data.options[index],
+                          onPress: () => {
+                                context
+                                    .read<QuizBloc>()
+                                    .add(CheckAns(context, data, index))
+                              })),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );

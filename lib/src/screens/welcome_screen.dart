@@ -4,6 +4,7 @@ import 'package:appdemo/src/screens/quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import '../bloc/quiz_event.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -76,9 +77,10 @@ class WelcomeScreen extends StatelessWidget {
           );
         } else if (state is QuestionSuccess) {
           return QuizScreen(state.data);
-        } else {
+        } 
+        else {
           return Text(
-            "Error",
+            "",
             style: Theme.of(context)
                 .textTheme
                 .headline1

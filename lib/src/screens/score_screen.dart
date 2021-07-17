@@ -8,35 +8,36 @@ class Score extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => QuizBloc(),
-        child: Stack(fit: StackFit.expand, children: [
-          SvgPicture.asset("assets/icons/bg.svg",
-              fit: BoxFit.fill, height: double.infinity),
-          Column(
-            children: [
-              Spacer(flex: 3),
-              Text('Score',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline3
-                      ?.copyWith(color:ScoreSreen.shadowColor)),
-              Spacer(),
-              BlocBuilder<QuizBloc, QuizState>(
-                builder: (context, state) {
-                  return Text(
-                    '${context.read<QuizBloc>().correctAnswer * 10}/${context.read<QuizBloc>().questions.length * 10}',
+      body: BlocBuilder<QuizBloc, QuizState>(
+        builder: (context, state) {
+          return Stack(fit: StackFit.expand, children: [
+            SvgPicture.asset("assets/icons/bg.svg",
+                fit: BoxFit.fill, height: double.infinity),
+            Column(
+              children: [
+                Spacer(flex: 3),
+                Text('Score',
                     style: Theme.of(context)
                         .textTheme
-                        .headline4
-                        ?.copyWith(color:ScoreSreen.shadowColor),
-                  );
-                },
-              ),
-              Spacer(flex: 3),
-            ],
-          )
-        ]),
+                        .headline3
+                        ?.copyWith(color: ScoreSreen.shadowColor)),
+                Spacer(),
+                BlocBuilder<QuizBloc, QuizState>(
+                  builder: (context, state) {
+                    return Text(
+                      '${context.read<QuizBloc>().correctAnswer * 10}/${context.read<QuizBloc>().questions.length * 10}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline4
+                          ?.copyWith(color: ScoreSreen.shadowColor),
+                    );
+                  },
+                ),
+                Spacer(flex: 3),
+              ],
+            )
+          ]);
+        },
       ),
     );
   }

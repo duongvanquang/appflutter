@@ -3,6 +3,7 @@ import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import '../bloc/quiz_event.dart';
 
 import 'progressbar.dart';
 import 'question.dart';
@@ -21,15 +22,16 @@ class Body extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppColor.defaultPadding),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppColor.defaultPadding),
               child: ProgessBarTimer(),
             ),
-            SizedBox(height:  AppColor.defaultPadding),
+            SizedBox(height: AppColor.defaultPadding),
             BlocBuilder<QuizBloc, QuizState>(
               builder: (context, state) {
                 return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal:  AppColor.defaultPadding),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppColor.defaultPadding),
                     child: Text.rich(TextSpan(
                         text:
                             'Question ${context.read<QuizBloc>().questionNumber}',
@@ -50,16 +52,16 @@ class Body extends StatelessWidget {
               },
             ),
             Divider(thickness: 1.5),
-            SizedBox(height:  AppColor.defaultPadding),
+            SizedBox(height: AppColor.defaultPadding),
             Expanded(
               child: PageView.builder(
-               physics: NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 controller: context.read<QuizBloc>().pageController,
                 onPageChanged: (value) =>
                     context.read<QuizBloc>().add(QuizChangeQuestionPage()),
                 itemCount: context.read<QuizBloc>().questions.length,
                 itemBuilder: (context, index) => QuestionCard(
-                    data: context.read<QuizBloc>().questions[index]),
+                    data: context.read<QuizBloc>().questions[index]),         
               ),
             )
           ],

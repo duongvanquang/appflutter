@@ -19,7 +19,7 @@ class _ProgessBarTimerState extends State<ProgessBarTimer> {
         if (_progress == 10.0) {
           timer.cancel();
           print("Het gio");
-         // context.read<QuizBloc>().nextQuestion(context);
+        //  context.read<QuizBloc>().nextQuestion(context);
         } else {
           _progress += 1;
           print(_progress);

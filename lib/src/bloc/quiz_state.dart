@@ -2,6 +2,7 @@ part of 'quiz_bloc.dart';
 
 @immutable
 abstract class QuizState extends Equatable {
+
   const QuizState();
 
   @override

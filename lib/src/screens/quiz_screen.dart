@@ -26,11 +26,7 @@ class QuizScreen extends StatelessWidget {
                       color: QuizSreen.backgroundColor, fontSize: 16)))
         ],
       ),
-      body: BlocBuilder<QuizBloc, QuizState>(
-        builder: (context, state) {
-          return Body(data);
-        },
-      ),
+      body: Body(data),
     );
   }
 }

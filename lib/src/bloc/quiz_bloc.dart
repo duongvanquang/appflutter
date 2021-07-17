@@ -6,7 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-part 'quiz_event.dart';
+import './quiz_event.dart';
 part 'quiz_state.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
@@ -51,20 +51,17 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       _isAnswer = true;
       if (_idAnswerSelected == _idRightAnswer) {
         _correctAnswer++;
-        Future.delayed(Duration(seconds: 1), () {
-          nextQuestion(event.context);
-        });
         yield QuizChooseRightAnswer();
-      } else {
-        Future.delayed(Duration(seconds: 1), () {
-          nextQuestion(event.context);
-        });
-        yield QuestionSuccess(data: _question);
       }
-    } else if (event is QuizChangeQuestionPage) {
+      Future.delayed(Duration(seconds: 1), () {
+        nextQuestion(event.context);
+      });
+    }
+     else if (event is QuizChangeQuestionPage) {
       _questionNumber++;
       yield QuizQuestionPageChanged();
     }
+    yield QuestionSuccess(data: _question);
   }
 
   void nextQuestion(context) {
