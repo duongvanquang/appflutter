@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constant_color.dart';
-import 'package:appdemo/src/screens/score_screen.dart';
-import 'package:appdemo/src/widgets/body.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../constants/constant_color.dart';
+import '../screens/score_screen.dart';
+import '../widgets/body.dart';
+import 'welcome_screen.dart';
 
 class QuizScreen extends StatelessWidget {
   final data;
@@ -16,14 +17,20 @@ class QuizScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Score()));
-              },
-              child: Text("Skip",
-                  style: TextStyle(
-                      color: QuizSreen.backgroundColor, fontSize: 16)))
+          BlocBuilder<QuizBloc, QuizState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  TextButton(
+                      onPressed: 
+                      () => context.read<QuizBloc>().nextQuestion(context),
+                      child: Text("Skip",
+                          style: TextStyle(
+                              color: QuizSreen.backgroundColor, fontSize: 16))),
+                ],                           
+              );
+            },
+          )
         ],
       ),
       body: Body(data),

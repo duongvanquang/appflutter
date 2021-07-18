@@ -1,18 +1,18 @@
 import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constant_color.dart';
-import 'package:appdemo/src/screens/quiz_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../bloc/quiz_event.dart';
+import '../constants/constant_color.dart';
+import '../screens/quiz_screen.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String enterName = '';
     final playerName = BlocProvider.of<QuizBloc>(context);
-    return Scaffold(
-      body: BlocBuilder<QuizBloc, QuizState>(
+    return Scaffold(body: BlocBuilder<QuizBloc, QuizState>(
       builder: (context, state) {
         if (state is QuizInitial) {
           return Stack(
@@ -21,8 +21,8 @@ class WelcomeScreen extends StatelessWidget {
                   fit: BoxFit.fill, height: double.infinity),
               SafeArea(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: AppColor.defaultPadding),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppColor.defaultPadding),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -32,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
                                 .textTheme
                                 .headline4
                                 ?.copyWith(
-                                    color:WelcomeSreen.backgroundColor,
+                                    color: WelcomeSreen.backgroundColor,
                                     fontWeight: FontWeight.bold)),
                         Text("Enter your informations below"),
                         Spacer(),
@@ -58,16 +58,18 @@ class WelcomeScreen extends StatelessWidget {
                             child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,
-                              padding: EdgeInsets.all(AppColor.defaultPadding * 0.75),
+                              padding: EdgeInsets.all(
+                                  AppColor.defaultPadding * 0.75),
                               decoration: BoxDecoration(
-                                  gradient:WelcomeSreen.backgroundGradien,
+                                  gradient: WelcomeSreen.backgroundGradien,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(12))),
                               child: Text("Lets Start Quiz",
                                   style: Theme.of(context)
                                       .textTheme
                                       .button
-                                      ?.copyWith(color:WelcomeSreen.titleTextColor)),
+                                      ?.copyWith(
+                                          color: WelcomeSreen.titleTextColor)),
                             )),
                         Spacer(flex: 2)
                       ]),
@@ -77,8 +79,7 @@ class WelcomeScreen extends StatelessWidget {
           );
         } else if (state is QuestionSuccess) {
           return QuizScreen(state.data);
-        } 
-        else {
+        } else {
           return Text(
             "",
             style: Theme.of(context)

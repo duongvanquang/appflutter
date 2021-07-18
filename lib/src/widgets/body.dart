@@ -1,9 +1,9 @@
 import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../bloc/quiz_event.dart';
+import '../constants/constant_color.dart';
 
 import 'progressbar.dart';
 import 'question.dart';

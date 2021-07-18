@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:appdemo/src/model/quiz_model.dart';
+ import 'package:appdemo/src/model/quiz_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+// import '../model/quiz_model.dart'
 
 import './quiz_event.dart';
 part 'quiz_state.dart';
