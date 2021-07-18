@@ -1,7 +1,8 @@
-import 'package:appdemo/src/bloc/quiz_bloc.dart';
-import 'package:appdemo/src/constants/constant_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/quiz_bloc.dart';
+import '../constants/constant_color.dart';
+
 
 class Option extends StatelessWidget {
   final datas;
@@ -63,10 +64,11 @@ class Option extends StatelessWidget {
       } else if (option.idAnswerSelected != index) {
         return QuizSreen.falseColor;
       }
-      else if(option.idRightAnswer != index){
+    } else if (option.isAnswer) {
+      if (option.idRightAnswer != index) {
         return QuizSreen.falseColor;
       }
-    } 
+    }
     return QuizSreen.shadowColor;
   }
 

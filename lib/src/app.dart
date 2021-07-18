@@ -1,9 +1,9 @@
-import 'package:appdemo/src/screens/quiz_screen.dart';
-import 'package:appdemo/src/screens/score_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/quiz_bloc.dart';
 import 'screens/welcome_screen.dart';
+import '../src/screens/quiz_screen.dart';
+import '../src/screens/score_screen.dart';
 
 class MyApp extends StatelessWidget {
   final QuizBloc bloc = QuizBloc();

@@ -1,8 +1,8 @@
-import 'package:appdemo/src/bloc/quiz_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../bloc/quiz_event.dart';
+import '../bloc/quiz_bloc.dart';
 import '../constants/constant_color.dart';
 
 import 'progressbar.dart';
@@ -24,7 +24,11 @@ class Body extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                   horizontal: AppColor.defaultPadding),
-              child: ProgessBarTimer(),
+              child: BlocBuilder<QuizBloc, QuizState>(
+                builder: (context, state) {
+                  return ProgessBarTimer();
+                },
+              ),
             ),
             SizedBox(height: AppColor.defaultPadding),
             BlocBuilder<QuizBloc, QuizState>(
@@ -58,10 +62,10 @@ class Body extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 controller: context.read<QuizBloc>().pageController,
                 onPageChanged: (value) =>
-                    context.read<QuizBloc>().add(QuizChangeQuestionPage()),
+                    context.read<QuizBloc>().add(QuizChangeQuestionPageSuccess()),
                 itemCount: context.read<QuizBloc>().questions.length,
                 itemBuilder: (context, index) => QuestionCard(
-                    data: context.read<QuizBloc>().questions[index]),         
+                    data: context.read<QuizBloc>().questions[index]),
               ),
             )
           ],

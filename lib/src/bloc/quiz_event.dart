@@ -15,13 +15,13 @@ class FetchQuestion extends QuizEvent {
   List<Object> get props => [questNumber];
 }
 
-class CheckAns extends QuizEvent {
+class QuizChooseOption extends QuizEvent {
   final BuildContext context;
   final question;
   final int indexOption;
-  CheckAns(this.context, this.question, this.indexOption);
+  QuizChooseOption(this.context, this.question, this.indexOption);
   @override
   List<Object> get props => [question];
 }
 
-class QuizChangeQuestionPage extends QuizEvent {}
+class QuizChangeQuestionPageSuccess extends QuizEvent {}

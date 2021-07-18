@@ -1,11 +1,10 @@
 import 'dart:async';
 
- import 'package:appdemo/src/model/quiz_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-// import '../model/quiz_model.dart'
+import '../model/quiz_model.dart';
 
 import './quiz_event.dart';
 part 'quiz_state.dart';
@@ -41,26 +40,25 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     if (event is FetchQuestion) {
       yield QuestionLoadProgress();
       try {
-        // int questionIndex = 0;
         yield QuestionSuccess(data: _question);
       } catch (exception) {
         yield QuestionLoadProgress();
       }
-    } else if (event is CheckAns) {
+    } else if (event is QuizChooseOption) {
       _idAnswerSelected = event.indexOption;
       _idRightAnswer = event.question.answer;
       _isAnswer = true;
       if (_idAnswerSelected == _idRightAnswer) {
         _correctAnswer++;
-        yield QuizChooseRightAnswer();
+        yield QuizChooseRightAnswerSuccess();
       }
       Future.delayed(Duration(seconds: 1), () {
         nextQuestion(event.context);
       });
     }
-     else if (event is QuizChangeQuestionPage) {
+     else if (event is QuizChangeQuestionPageSuccess) {
       _questionNumber++;
-      yield QuizQuestionPageChanged();
+      yield QuizQuestionPageChangedSuccess();
     }
     yield QuestionSuccess(data: _question);
   }

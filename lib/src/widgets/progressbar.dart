@@ -1,14 +1,13 @@
 import 'dart:async';
- 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/percent_indicator.dart';
- 
+
 class ProgessBarTimer extends StatefulWidget {
   @override
   _ProgessBarTimerState createState() => _ProgessBarTimerState();
 }
+
 class _ProgessBarTimerState extends State<ProgessBarTimer> {
   double _progress = 0.0;
   late Timer timer;
@@ -19,7 +18,6 @@ class _ProgessBarTimerState extends State<ProgessBarTimer> {
         if (_progress == 10.0) {
           timer.cancel();
           print("Het gio");
-        //  context.read<QuizBloc>().nextQuestion(context);
         } else {
           _progress += 1;
           print(_progress);
@@ -27,26 +25,26 @@ class _ProgessBarTimerState extends State<ProgessBarTimer> {
       }),
     );
   }
- 
+
   @override
   void initState() {
     super.initState();
     startTimer();
   }
- 
+
   @override
   void setState(fn) {
     if (mounted) {
       super.setState(fn);
     }
   }
- 
+
   @override
   void dispose() {
     startTimer();
     super.dispose();
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -69,7 +67,7 @@ class _ProgessBarTimerState extends State<ProgessBarTimer> {
               animationDuration: 10000,
               percent: 1,
               linearStrokeCap: LinearStrokeCap.roundAll,
-              progressColor:Colors.greenAccent,
+              progressColor: Colors.greenAccent,
               backgroundColor: Colors.transparent,
             ),
             Padding(
@@ -79,14 +77,11 @@ class _ProgessBarTimerState extends State<ProgessBarTimer> {
                 children: [
                   Text(
                     "${_progress.round()}" + " sec",
-                    style: TextStyle(color: Colors.green).copyWith(
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.green)
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
-                  SvgPicture.asset(
-                    "assets/icons/clock.svg",
-                    fit: BoxFit.fill,
-                    color: Colors.white
-                  ),
+                  SvgPicture.asset("assets/icons/clock.svg",
+                      fit: BoxFit.fill, color: Colors.white),
                 ],
               ),
             ),

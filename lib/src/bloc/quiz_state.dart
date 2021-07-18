@@ -20,16 +20,6 @@ class QuestionSuccess extends QuizState {
   @override
   List<Object> get props => [data];
 }
+class QuizQuestionPageChangedSuccess extends QuizState {}
 
-class NextQuestion extends QuizState {
-  final nextquestion;
-  NextQuestion({this.nextquestion});
-  @override
-  List<Object> get props => [nextquestion];
-}
-
-class QuizQuestionPageChanged extends QuizState {}
-
-class ChooseOption extends QuizState {}
-
-class QuizChooseRightAnswer extends QuizState{}
+class QuizChooseRightAnswerSuccess extends QuizState{}
